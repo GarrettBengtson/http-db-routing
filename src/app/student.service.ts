@@ -23,14 +23,17 @@ export class StudentService {
     .pipe(map(
       responseData => {
         const studentArray: Student[] = [];
-        for(let key in responseData)
+        for(let key in responseData){
           studentArray.push(responseData[key])
+          console.log(`The value of key is ${key}`)
+          console.log(responseData[key])
+        }
         return studentArray;
       }
     ));
   }
 
   deleteAll() {
-    this.STUDENTS = [];
+    this.http.delete(this.studentURL + "students.json").subscribe();
   }
 }
